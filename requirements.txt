@@ -1,0 +1,6 @@
+pandas=='0.25.1'
+numpy=='1.16.5'
+bs4=='4.8.0'
+requests=='2.22.0'
+dash=='1.7.0'
+dash_table=='4.5.1'
