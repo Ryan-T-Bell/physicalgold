@@ -30,7 +30,7 @@ app.layout = html.Div([
 def download_gold_data(btn_download):
     data, cols = [], []
     
-    if btn_download>0:
+    if btn_download!=None and btn_download>0:
         df = get_all()
         
         if not df.empty:
