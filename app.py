@@ -49,7 +49,7 @@ def download_gold_data(btn_download, input_cashback):
         
         if not df.empty:
             cols = [{'id': i, 'name': i } for i in df.columns]
-            data = df.drop('url', axis=1).to_dict('records')
+            data = df.to_dict('records')
         
     return data, cols
 
