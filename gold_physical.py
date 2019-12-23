@@ -274,14 +274,46 @@ def get_gold_price():
     return gold_spot
 
 def get_all(cash_back = 0.01):
-    df = pd.concat([
-        get_apmex(),
-        get_money_metals(),
-        get_goldeneagle(),
-        get_jmbullion(),
-        get_ebay(),
-        get_bgasc(),
-    ], ignore_index=True)
+    
+    df_list = []
+    try:
+        df = get_apmex()
+        df_list.append(df)
+    except:
+        pass
+    
+    try:
+        df = get_money_metals()
+        df_list.append(df)
+    except:
+        pass
+    
+    try:
+        df = get_goldeneagle()
+        df_list.append(df)
+    except:
+        pass
+    
+    try:
+        df = get_jmbullion()
+        df_list.append(df)
+    except:
+        pass
+    
+    try:
+        df = get_ebay()
+        df_list.append(df)
+    except:
+        pass
+    
+    
+    try:
+        df = get_bgasc()
+        df_list.append(df)
+    except:
+        pass
+        
+    df = pd.concat(df_list, ignore_index=True)
 
     df['tv'] = np.where(df['source'].isin(['ebay']), 1-cash_back, 1)*df['price']
     df.sort_values('tv', inplace=True)
