@@ -287,7 +287,7 @@ def get_all(cash_back = 0.01):
     df.sort_values('tv', inplace=True)
     df.reset_index(drop=True, inplace=True)
     df['o/u'] = df['tv']-get_gold_price()
-    
+    df = df[['tv', 'price', 'o/u', 'title', 'source', 'url']]
     return df
 
 
