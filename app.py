@@ -1,3 +1,4 @@
+import flask
 import dash
 from dash_table import DataTable
 from dash.dependencies import Output, Input, State 
@@ -6,8 +7,8 @@ from gold_physical import get_all
 import dash_html_components as html
 import dash_core_components as dcc
 
-
-app = dash.Dash(name=__name__)
+server = flask.Flask(__name__)
+app = dash.Dash(__name__, server=server)
 
 app.layout = html.Div([
     html.H1('Gold Best Physical Price'),
