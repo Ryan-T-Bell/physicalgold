@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+
 def get_apmex():
     req = requests.get('https://www.apmex.com/category/15000/gold-coins/all?vt=g&f_metalname=gold&f_bulliontype=coin&f_productoz=1+oz&f_mintyear=random&sortby=priceasc')
 
@@ -242,7 +245,7 @@ def get_ebay():
     return df
 
 def _get_bgasc(url):
-    soup = BeautifulSoup(requests.get(url).text, 'lxml')
+    soup = BeautifulSoup(requests.get(url, headers=headers).text, 'lxml')
     price = float([i.text.strip() for i in soup.find_all('div', attrs={'class': 'price'}) if 'As Low As' in i.text.strip() ][0].split(
     'As Low As:')[-1].strip().replace('$','').replace(',',''))
     title = soup.find_all('div', id='breadcrumb')[0].find_all('a')[-1].text
