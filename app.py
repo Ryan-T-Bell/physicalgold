@@ -9,7 +9,7 @@ import dash_core_components as dcc
 
 server = flask.Flask(__name__)
 app = dash.Dash(__name__, server=server)
-
+server = app.server
 app.layout = html.Div([
     html.H1('Gold Best Physical Price'),
     
